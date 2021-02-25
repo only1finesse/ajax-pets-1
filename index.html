@@ -10,6 +10,8 @@
 
         $("#pet_likes").hide();
         $("#pet_eats").hide();
+        $("#pet_name").hide();
+        $("button").hide();
 
         $("#pet_feels").click(function(e){
             //alert("Feels is clicked!")
@@ -19,6 +21,14 @@
             //alert("Feels is clicked!")
             $("#pet_eats").slideDown(200);
         })
+        $("#pet_eats").click(function(e){
+            //alert("Feels is clicked!")
+            $("#pet_name").slideDown(200);
+        })
+        $("#pet_name").click(function(e){
+            //alert("Feels is clicked!")
+            $("button").slideDown(200);
+        })
 
            $('#myForm').submit(function(e){
                //alert("hi!  I'm jQuery!");
@@ -27,24 +37,30 @@
               let feels = $("input[name=feels]:checked").val();
               let likes = $("input[name=likes]:checked").val();
               let eats = $("input[name=eats]:checked").val();
+              let names = $("input[name=names]").val();
               let pet = ""; //will store our pet.
               let pic = "";
               //alert(eats);
 
-              if (feels == "fluffy" && likes == "petted" && eats == "carrots"){
+              if (feels == "fluffy" && likes == "petted" && eats == "plants"){
                 pet = "rabbit";
               }
-              if (feels == "scaly" && likes == "ridden" && eats == "pets"){
+              if (feels == "scaly" && likes == "ridden" && eats == "meat"){
                 pet = "velociraptor";
+              }
+              if (feels == "fluffy" && likes == "alone" && eats == "meat"){
+                pet = "cat";
               }
 
               //Create text to tell user about pet
               let output = "";
 
               output += `<p>Your pet is a: ${pet}</p>`;
+              output += `<p>Your pets name is: ${names}</p>`;
               output += `<p>Your pet feels: ${feels}</p>`;
               output += `<p>Your pet likes to be: ${likes}</p>`;
               output += `<p>Your pet likes to eat: ${eats}</p>`;
+              output += `<p>Meet ${names}!  ${names} is ${feels}, likes to be ${likes} and eat ${eats}, just like you wanted!  ${names} is a ${pet}!</p>`;
 
               
 
@@ -54,6 +70,9 @@
               $('#pet').load(`includes/content.html #${pet}`);
               //$('#pet').load('includes/content.html #bad-dog');
 
+              $("button").click(function(){
+                location.reload(true);
+        });
 
                e.preventDefault();//no need to submit as you'll be doing AJAX on this page
        
@@ -70,21 +89,31 @@
        <p>Please choose how you would like your pet to feel:</p>
        <input type="radio" name="feels" value="fluffy" required = "required"> fluffy <br />
        <input type="radio" name="feels" value="scaly"> scaly <br />
+       <input type="radio" name="feels" value="feathery"> feathery <br />
    </div>
    <div id="pet_likes">
        <h3>Likes</h3>
        <p>Please tell us what your pet will like:</p>
        <input type="radio" name="likes" value="petted" required = "required"> to be petted <br />
        <input type="radio" name="likes" value="ridden"> to be ridden <br />
+       <input type="radio" name="likes" value="alone"> to be left alone <br />
    </div>
        <div id="pet_eats">
        <h3>Eats</h3>
        <p>Please tell us what your pet likes to eat:</p>
-       <input type="radio" name="eats" value="carrots" required = "required"> carrots <br />
-       <input type="radio" name="eats" value="pets"> other people's pets <br />
+       <input type="radio" name="eats" value="plants" required = "required"> Plants <br />
+       <input type="radio" name="eats" value="meat"> Meat <br />
+       <input type="radio" name="eats" value="both"> Both <br />
    </div>
+    </div>
+        <div id="pet_name">
+        <h3>Name</h3>
+        <p>Please tell us what you want to name your pet:</p>
+        <input type="text" name="names" required = "required">  <br />
+    </div>
   
    <input type="submit" value="submit it!" />
+   <button type="button">Reload page</button>  
    <div id = "pet">Pic of pet goes here.</div>
    <div id="output">Output goes here!</div>
 </form>
