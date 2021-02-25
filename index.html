@@ -49,7 +49,7 @@
               if (feels == "fluffy" && likes == "petted" && eats == "meat"){
                 pet = "dog";
               }
-              if (feels == "fluffy" && likes == "petted" && eats == "both"){
+              if (feels == "fluffy" && likes == "petted" && eats == "everything"){
                 pet = "bear";
               }
               if (feels == "fluffy" && likes == "ridden" && eats == "plants"){
@@ -58,7 +58,7 @@
               if (feels == "fluffy" && likes == "ridden" && eats == "meat"){
                 pet = "sabertooth";
               }
-              if (feels == "fluffy" && likes == "ridden" && eats == "both"){
+              if (feels == "fluffy" && likes == "ridden" && eats == "everything"){
                 pet = "gorilla";
               }
               if (feels == "fluffy" && likes == "alone" && eats == "plants"){
@@ -67,7 +67,7 @@
               if (feels == "fluffy" && likes == "alone" && eats == "meat"){
                 pet = "cat";
               }
-              if (feels == "fluffy" && likes == "alone" && eats == "both"){
+              if (feels == "fluffy" && likes == "alone" && eats == "everything"){
                 pet = "hippo";
               }
 
@@ -78,7 +78,7 @@
               if (feels == "scaly" && likes == "petted" && eats == "meat"){
                 pet = "crocodile";
               }
-              if (feels == "scaly" && likes == "petted" && eats == "both"){
+              if (feels == "scaly" && likes == "petted" && eats == "everything"){
                 pet = "iguana";
               }
               if (feels == "scaly" && likes == "ridden" && eats == "plants"){
@@ -87,7 +87,7 @@
               if (feels == "scaly" && likes == "ridden" && eats == "meat"){
                 pet = "velociraptor";
               }
-              if (feels == "scaly" && likes == "ridden" && eats == "both"){
+              if (feels == "scaly" && likes == "ridden" && eats == "everything"){
                 pet = "tortoise";
               }
               if (feels == "scaly" && likes == "alone" && eats == "plants"){
@@ -96,7 +96,7 @@
               if (feels == "scaly" && likes == "alone" && eats == "meat"){
                 pet = "cobra";
               }
-              if (feels == "scaly" && likes == "alone" && eats == "both"){
+              if (feels == "scaly" && likes == "alone" && eats == "everything"){
                 pet = "komodo-dragon";
               }
 
@@ -107,7 +107,7 @@
               if (feels == "feathery" && likes == "petted" && eats == "meat"){
                 pet = "eagle";
               }
-              if (feels == "feathery" && likes == "petted" && eats == "both"){
+              if (feels == "feathery" && likes == "petted" && eats == "everything"){
                 pet = "raven";
               }
               if (feels == "feathery" && likes == "ridden" && eats == "plants"){
@@ -116,7 +116,7 @@
               if (feels == "feathery" && likes == "ridden" && eats == "meat"){
                 pet = "pterodactyl";
               }
-              if (feels == "feathery" && likes == "ridden" && eats == "both"){
+              if (feels == "feathery" && likes == "ridden" && eats == "everything"){
                 pet = "griffin";
               }
               if (feels == "feathery" && likes == "alone" && eats == "plants"){
@@ -125,7 +125,7 @@
               if (feels == "feathery" && likes == "alone" && eats == "meat"){
                 pet = "thunderbird";
               }
-              if (feels == "feathery" && likes == "alone" && eats == "both"){
+              if (feels == "feathery" && likes == "alone" && eats == "everything"){
                 pet = "vulture";
               }
 
@@ -138,8 +138,16 @@
               output += `<p>Your pet feels: ${feels}</p>`;
               output += `<p>Your pet likes to be: ${likes}</p>`;
               output += `<p>Your pet likes to eat: ${eats}</p>`;
-              output += `<p>Meet ${names}!  ${names} is ${feels}, likes to be ${likes} and eat ${eats}, just like you wanted!  ${names} is a ${pet}!</p>`;
 
+              if (eats == "meat"){
+              output += `<p>Meet ${names}!  ${names} is ${feels}, likes to be ${likes} and eats ${eats}, just like you wanted!  ${names} is a ${pet}, watch your hands when feeding ${names}!</p>`;
+            } else if (eats == "plants"){              
+                output += `<p>Meet ${names}!  ${names} is ${feels}, likes to be ${likes} and eats ${eats}, just like you wanted!  ${names} is a ${pet}, better stock up on veggies!</p>`;
+            } else if (eats == "everything"){              
+                output += `<p>Meet ${names}!  ${names} is ${feels}, likes to be ${likes} and eats ${eats}, just like you wanted!  ${names} is a ${pet}, anytime is munchie time for ${names}!</p>`;
+            } else {              
+                output += `<p>Meet ${names}!  ${names} is ${feels}, likes to be ${likes} and eats ${eats}, just like you wanted!  ${names} is a ${pet}!</p>`;
+            }
               
 
               $('#output').html(output);
@@ -181,7 +189,7 @@
        <p>Please tell us what your pet likes to eat:</p>
        <input type="radio" name="eats" value="plants" required = "required"> Plants <br />
        <input type="radio" name="eats" value="meat"> Meat <br />
-       <input type="radio" name="eats" value="both"> Both <br />
+       <input type="radio" name="eats" value="everything"> Everything <br />
    </div>
     </div>
         <div id="pet_name">
